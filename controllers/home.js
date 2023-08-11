@@ -24,24 +24,25 @@ router.get('/', async (req, res) => {
   }
 });
 
-router.get('/post/:id', async (req, res) => {
+router.get('/:id', async (req, res) => {
   try {
-      const postData = await Posts.findByPk(req.params.id, {
-          include: [
-            { model: Comments, include: { model: Users, attributes: ['name'] }}, 
-            { model: Users, attributes: ['name'] }],
-      });
-      const post = postData.get({ plain: true });
+    const postData = await Posts.findByPk(req.params.id, {
+      include: [
+        { model: Comments, include: { model: Users, attributes: ['name'] } },
+        { model: Users, attributes: ['name'] }
+      ]
+    });
 
-      res.render('post', {
-          post: post,
-          ...Posts,
-          ...Comments,
-          post: [Posts],
-          logged_in: req.session.logged_in,
-      });
+    if (!postData) {
+      res.status(404).json({ message: 'Post not found' });
+      return;
+    }
+
+    const post = postData.get({ plain: true });
+
+    res.status(200).json(post);
   } catch (err) {
-      res.status(500).json(err);
+    res.status(500).json(err);
   }
 });
 

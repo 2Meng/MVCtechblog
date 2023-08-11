@@ -2,13 +2,13 @@
 <div class="row mb-4 blog">
   <div class="col-md-5">
     <h2>
-      <a href="api/blogs/{{post.id}}">{{post.title}}</a>
+      <a href="api/post/{{post.id}}">{{post.title}}</a>
     </h2>
-    <p>Created by {{post.user_id.title}} on {{format_date post.date_created}}</p>
+    <p>Created by {{post.Users.name}} on {{format_date post.date_created}}</p>
   </div>
   <div class="col-md-7">
     <p>
-      {{post.text}}
+      {{post.content}}
     </p>
   </div>
 </div>

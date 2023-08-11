@@ -1,20 +1,20 @@
 const newFormHandler = async (event) => {
   event.preventDefault();
 
-  const name = document.querySelector('#post-name').value.trim();
-  const postText = document.querySelector('#post-text').value.trim();
+  const title = document.querySelector('#post-name').value.trim();
+  const content = document.querySelector('#post-text').value.trim();
 
-  if (name && postText) {
+  if (title && content) {
     const response = await fetch(`/api/post`, {
       method: 'POST',
-      body: JSON.stringify({ name, postText }),
+      body: JSON.stringify({ title, content }),
       headers: {
         'Content-Type': 'application/json',
       },
     });
 
     if (response.ok) {
-      document.location.replace('/api/profile');
+      document.location.replace('/');
     } else {
       alert('Failed to create post');
     }
