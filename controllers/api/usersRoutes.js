@@ -1,24 +1,5 @@
 const router = require('express').Router();
 const { Users } = require('../../models');
-const withAuth = require('../../utils/auth');
-
-router.get('/profile', withAuth, async (req, res) => {
-  try {
-    const userData = await Users.findByPk(req.session.user_id);
-
-    if (!userData) {
-      res.status(404).json({ message: 'User not found' });
-      return;
-    }
-
-    res.render('profile', {
-      user: userData.get({ plain: true }),
-      logged_in: true
-    });
-  } catch (err) {
-    res.status(500).json(err);
-  }
-});
 
 router.post('/', async (req, res) => {
   try {

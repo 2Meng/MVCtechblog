@@ -35,9 +35,9 @@ router.get('/post/:id', async (req, res) => {
 
       res.render('post', {
           post: post,
-          ...post,
+          ...Posts,
           ...Comments,
-          post: [post],
+          post: [Posts],
           logged_in: req.session.logged_in,
       });
   } catch (err) {
@@ -65,7 +65,7 @@ router.get('/profile', withAuth, async (req, res) => {
 
 router.get('/login', (req, res) => {
   if (req.session.logged_in) {
-    res.redirect('/profile');
+    res.redirect('/');
     return;
   }
 
