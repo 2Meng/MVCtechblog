@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Tech Blog</title>
+
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@picocss/pico@1/css/pico.min.css">
+</head>
+
+<body class="container-fluid">
+    <div>
+        <header>
+
+            {{#if logged_in}}
+            <nav>
+                <ul>
+                    <li><a href="/">Home</a></li>
+                    <li><a href="/profile">Create a Tech Post!</a></li>
+                    <li><a class="logout" id="logout">Logout</a></li>
+                </ul>
+            </nav>
+            {{else}}
+            <nav>
+                <ul>
+                    <li><a href="/">Home</a></li>
+                    <li><a href="/profile">Create a Tech Post!</a></li>
+                    <li><a href="/login">Login</a></li>
+                </ul>
+            </nav>
+            {{/if}}
+
+            <h1>
+                <a href="/">The Tech Blog</a>
+            </h1>
+
+        </header>
+        <main class="container">
+
+            {{{ body }}}
+        </main>
+        <footer>
+
+        </footer>
+    </div>
+
+    {{#if logged_in}}
+    <button class="no-button" id="logout">logout</button>
+    {{/if}}
+    </nav>
+    {{#if logged_in}}
+    <script src="/js/logout.js"></script>
+    {{/if}}
+</body>
