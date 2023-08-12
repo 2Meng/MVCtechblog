@@ -20,23 +20,26 @@ router.get('/profile', withAuth, async (req, res) => {
   }
 });
 
-router.get('post/:id', async (req, res) => {
+router.get('/post/:id', async (req, res) => {
   try {
     const postData = await Posts.findByPk(req.params.id, {
       include: [
+        Users,
         { model: Comments, 
-          include: [Users] }
-      ]
+          include: [Users] },
+      ],
     });
-
     if (!postData) {
       res.status(404).json({ message: 'Post not found' });
       return;
     }
 
     const post = postData.get({ plain: true });
-
-    res.status(200).json(post);
+    // res.status(200).json(post);
+     res.render('posts', {
+       post,
+       logged_in: req.session.logged_in 
+    });
   } catch (err) {
     res.status(500).json(err);
   }

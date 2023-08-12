@@ -2,7 +2,7 @@
 
     <hgroup>
         <h2>{{title}}</h2>
-        <cite>Posted by {{user.name}} on {{format_date date_created}}</cite>
+        <cite>Posted by {{post.users.name}} on {{format_date date_created}}</cite>
     </hgroup>
 
     <div>
@@ -21,9 +21,9 @@
 
     <form style="display: none" id="comment-form">
         <div class="grid">
-            <label for="comment-content">
+            <label for="comment-text">
                 Comment:
-                <input type="text" id="comment-content" name="comment-content"></input>
+                <input type="text" id="comment-text" name="comment-text">
             </label>
             <button id="submitBtn">Submit</button>
         </div>
@@ -38,6 +38,8 @@
             </footer>
         </blockquote>
         {{/each}}
+    </article>
+
 </div>
 
-<script src="/js/comment.js"></script>
+<script src="/js/comments.js"></script>
