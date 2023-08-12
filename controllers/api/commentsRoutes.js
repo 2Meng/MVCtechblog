@@ -2,7 +2,7 @@ const router = require('express').Router();
 const { Comments } = require('../../models');
 const withAuth = require('../../utils/auth');
 
-router.post('/:id/comments', withAuth, async (req, res) => {
+router.post('/', withAuth, async (req, res) => {
     try {
         const newComments = await Comments.create({
             ...req.body,
@@ -20,7 +20,7 @@ router.put('/:id', withAuth, async (req, res) => {
     try {
         const updateComments = await Comments.update(
             {
-            ...req.body,
+            ...req.body
             },
             {
             where: {
